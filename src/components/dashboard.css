@@ -1,0 +1,17 @@
+.dashboard {
+    text-align: left;
+    height: 70px;
+}
+button {
+    background: #10609F;
+    box-shadow: 0px 4px 28px -7px rgba(16, 96, 159, 0.3);
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 22px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}

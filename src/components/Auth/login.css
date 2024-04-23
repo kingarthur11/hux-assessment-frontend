@@ -1,0 +1,96 @@
+.login-content {
+    display: flex;
+    flex-direction: row;
+}
+.left-side {
+    background: linear-gradient(70.17deg, #052137 7.39%, rgba(13, 46, 72, 0.88) 56.82%, rgba(5, 33, 55, 0.78) 99.37%, rgba(7, 36, 59, 0.827247) 99.66%);
+
+}
+
+.left-side, .righ-side {
+    height: 100vh;
+    width: 50%;
+    position: relative;
+}
+.left-content, .right-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.left-content h4 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 34px;
+    line-height: 41px;
+    letter-spacing: 0.035em;
+    color: #FFFFFF;
+}
+.right-content h3 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 48px;
+    color: #052137;
+}
+.right-content h4 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 29px;
+    color: #052137;
+}
+button {
+    background: #10609F;
+    box-shadow: 0px 4px 28px -7px rgba(16, 96, 159, 0.3);
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 22px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.035em;
+    color: #052137;
+}
+.right-content .text-remember {
+    text-align: left;
+}
+input {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 28px -9px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.035em;
+    color: #052137;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 50px;
+}
+
+@media (max-width: 990px) {
+    .left-side {
+        display: none;
+    }
+    .righ-side {
+        width: 100%;
+    }
+  }

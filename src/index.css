@@ -1,0 +1,35 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  button,  input, select {
+    outline: none;
+    border: none;
+  }
+
+  p, h1, h2, h3, h4, h5, h6, label, hr {
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat';
+    font-style: normal;
+    line-height: 40px;
+    /* color: #222222; */
+  }
+
+
+  input, textarea {
+    padding: 7px 5px;
+    outline: none;
+    border: none;
+    color: #090909;
+    background: #e9ecef;
+    border: 2px solid #E0E0E0;
+    border-radius: 5px;
+  }

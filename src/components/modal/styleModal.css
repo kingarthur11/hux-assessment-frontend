@@ -1,0 +1,24 @@
+.style-error {
+    font-size: 13px;
+    color: red;
+}
+.add-btn {
+    outline: none;
+    border: none;
+    color: #fff;
+    background-color: #243748;
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .loading-btn {
+    outline: none;
+    border: none;
+    color: #fff;
+    background-color: #424b53;
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+  }
