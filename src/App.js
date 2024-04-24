@@ -1,45 +1,28 @@
-// import React from 'react'
-// import TodoList from './components/todoList/mainTodoList'
-// import Login from './components/Login'
+import React, { useState, useEffect } from "react";
+import PageRoutes from "./ApiRoute";
+import { useSelector, useDispatch } from "react-redux";
+import { RefreshUser } from "./redux/actions/authActions";
+import Spinner from "./components/common/loading";
 
-// const App = () => {
-//   return (
-//     <div>
-//       {/* <TodoList /> */}
-//       <Login />
-//     </div>
-//   )
-// }
+function App() {
+  const dispatch = useDispatch();
+  const { login, isAuth } = useSelector((state) => state.auth);
 
-// export default App
+  useEffect(() => {
+    dispatch(RefreshUser());
+  }, [RefreshUser]);
 
-import * as React from "react";
-import {
-  createBrowserRouter
-} from "react-router-dom";
-import Login from './components/Auth/Login'
-import Register from './components/Auth/Register'
-import TodoList from './components/todoList/mainTodoList'
+  return (
+    <div className="">
+      {isAuth !== null ? (
+        <PageRoutes isAuth={isAuth} />
+      ) : (
+        <div className="vh-100 w-100">
+          <Spinner />
+        </div>
+      )}
+    </div>
+  );
+}
 
-const App = createBrowserRouter([
-  {
-    path: "/",
-    element: <TodoList />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-]);
-
-export default App
-
-// ReactDOM.createRoot(document.getElementById("root")).render(
-//   <React.StrictMode>
-//     <RouterProvider router={router} />
-//   </React.StrictMode>
-// );
+export default App;

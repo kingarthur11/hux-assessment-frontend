@@ -12,15 +12,6 @@ const FormValidation = ( ) => {
   const [loading, setIsLoading] = useState(false);
   const [show, setShow] = useState(true);
 
-  // const resetForm = () => {
-  //   setValues({
-  //     comment: "",
-  //     marchant: "",
-  //     status: "",
-  //     total: "",
-  //     date_applied: "",
-  //   });
-  // };
 
   const onInputChange = (e) => {
     e.persist();
@@ -89,7 +80,7 @@ export const LoginValidation = ( ) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(validate(values));
+    setErrors(validateLogin(values));
     setIsSubmitted(true);
   };
 
@@ -107,14 +98,11 @@ export const LoginValidation = ( ) => {
 
 export const validateLogin = (values) => {
   const errors = {};
-  if (values.fname.length <= 3) {
-    errors.fname = "value is reqired";
+  if (values.email == "") {
+    errors.email = "value is reqired";
   }
-  if (values.lname.length <= 3) {
-    errors.lname = "value is reqired";
-  }
-  if (values.phoneNumber == "") {
-    errors.phoneNumber = "value is reqired";
+  if (values.password == "") {
+    errors.password = "value is reqired";
   }
 
   return errors;
@@ -143,7 +131,7 @@ export const RegisterValidation = ( ) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(validate(values));
+    setErrors(validateRegister(values));
     setIsSubmitted(true);
   };
 
@@ -161,14 +149,14 @@ export const RegisterValidation = ( ) => {
 
 export const validateRegister = (values) => {
   const errors = {};
-  if (values.fname.length <= 3) {
-    errors.fname = "value is reqired";
+  if (values.name.length <= 3) {
+    errors.name = "value is reqired";
   }
-  if (values.lname.length <= 3) {
-    errors.lname = "value is reqired";
+  if (values.email == "") {
+    errors.email = "value is reqired";
   }
-  if (values.phoneNumber == "") {
-    errors.phoneNumber = "value is reqired";
+  if (values.password == "") {
+    errors.password = "value is reqired";
   }
 
   return errors;

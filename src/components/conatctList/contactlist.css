@@ -1,10 +1,11 @@
 .brg-color {
-  padding: 50px 0;
+  /* padding: 50px 0; */
   min-height: 100vh;
   background: linear-gradient(90deg, hsla(213, 77%, 14%, 1) 0%, hsla(202, 27%, 45%, 1) 100%);
 }
 .header-text, h3 {
   color: #ffffff;
+  font-size: 20px;
 }
 .style-list-heading {
   padding: 0 100px;
@@ -47,7 +48,9 @@ span {
   font-size: 13px;
   font-weight: 600;
 }
-
+.capitalize-text {
+  text-transform: capitalize;
+}
 .list-cards {
   background-color: #ffffff;
   border-radius: 8px;

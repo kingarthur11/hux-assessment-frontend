@@ -3,19 +3,23 @@ import axios from "axios";
 import FormValidation, { validate } from "../utility/FormValidation";
 import './styleModal.css'
 import { ToastContainer, toast } from 'react-toastify';
+import { authHeader, headers } from "../../redux/headers";
 
-const AddModal = ({ closeModal, getTodos }) => {
+const AddModal = ({ closeModal, getContacts }) => {
     const { errors, values, onInputChange, handleSubmit, isSubmitted } =
             FormValidation(validate);
     const [loading, setIsLoading] = useState(false);
-    const notify = () => toast("Weldone, you have successfully added a todo");
+    const notify = () => toast("Weldone, you have successfully added a contact");
+    const token = JSON.parse(localStorage.getItem("token"));
 
     const onFormSubmit = async (obj) => {
         setIsLoading(true);
         try {
-            await axios.post('https://todo-backend-1uso.onrender.com/api/todo/create', obj);
+            await axios.post('http://localhost:8000/api/user-contact', obj, {
+                headers: authHeader(token),
+              });
             notify()
-            getTodos()
+            getContacts()
             closeModal();
             setIsLoading(false);
         } catch (error) {
@@ -59,7 +63,7 @@ const AddModal = ({ closeModal, getTodos }) => {
                                     )}
                             </div>
                             <div className="mb-3">
-                                <input value={values.phoneNumber} onChange={(e) => onInputChange(e)} name="fname" type="text" className="form-control" placeholder="Phone Number" />
+                                <input value={values.phoneNumber} onChange={(e) => onInputChange(e)} name="phoneNumber" type="text" className="form-control" placeholder="Phone Number" />
                                 {errors && errors.phoneNumber ? (
                                     <div className="style-error">{errors.phoneNumber}</div>
                                     ) : (
@@ -70,8 +74,8 @@ const AddModal = ({ closeModal, getTodos }) => {
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={closeModal}>Close</button>
                             {
-                                loading ? <button class="loading-btn" type="button" disabled>
-                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                loading ? <button className="loading-btn" type="button" disabled>
+                                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                     Loading...
                                 </button> :
                                 <button type="submit" className="add-btn">Submit</button>

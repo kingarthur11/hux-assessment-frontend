@@ -1,0 +1,51 @@
+.style-navbar{
+    padding: .5rem 5rem;
+    background: #243748;
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    left: 0;
+}
+  
+.style-navbar .harmbuga span {
+    background: #ffffff;
+    color: #243748;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  .style-navbar .harmbuga i {
+    font-size: 40px;
+  }
+  
+  @media (min-width: 1200px) {
+    .style-navbar .harmbuga {
+      display: none;
+    }
+  }
+  @media (max-width: 600px) {
+    .style-navbar {
+        padding: .5rem 1rem;
+    }
+    
+    /* h3 {
+      font-size: 1rem;
+    }
+    .harmbuga {
+      font-size: 30px;
+    } */
+  }
+  .nav_link {
+    text-decoration: none;
+    color: #ffffff !important;
+  }
+  h3,
+  p {
+    color: #ffffff;
+    line-height: 25px;
+  }
+  .list-avater {
+    padding-right: 20px;
+  }
+  li:first-child {
+    padding-right: 50px;
+  }

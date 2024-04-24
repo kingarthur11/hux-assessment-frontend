@@ -1,33 +1,38 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link, useNavigate } from "react-router-dom";
 import "./login.css";
-import axios from "axios";
+import { useSelector, useDispatch, connect } from "react-redux";
 import { LoginValidation, validateLogin } from "../utility/FormValidation";
+import { loginUser } from "../../redux/actions/authActions";
+import {Toaster} from "react-hot-toast";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { errors, values, onInputChange, handleSubmit, isSubmitted } =
   LoginValidation(validateLogin);
   const [loading, setIsLoading] = useState(false);
-  const notify = () => toast("Weldone, you have successfully added a todo");
+  const notify = () => toast("Weldone, you have successfully added a contact");
 
   const onFormSubmit = async (obj) => {
-    try {
-      setIsLoading(true);
-      console.log(obj);
-      const response = await axios.post( `${process.env.REACT_APP_BASE_URL}login`, obj );
-      const formData = await response.data;
-      const token = await formData.data;
-      localStorage.setItem("accessToken", JSON.stringify(token));
-      console.log(token);
-      setIsLoading(false);
-      notify()
-      // navigate(`/`);
-      return { formData };
-    } catch (error) {
-      const message = error.response;
-      setIsLoading(false);
-      return { message };
-    }
+    dispatch(loginUser(obj, navigate));
+    // try {
+    //   setIsLoading(true);
+    //   console.log(obj);
+    //   const response = await axios.post( `${process.env.REACT_APP_BASE_URL}login`, obj );
+    //   const formData = await response.data;
+    //   const token = await formData.data;
+    //   localStorage.setItem("accessToken", JSON.stringify(token));
+    //   console.log(token);
+    //   setIsLoading(false);
+    //   notify()
+    //   // navigate(`/`);
+    //   return { formData };
+    // } catch (error) {
+    //   const message = error.response;
+    //   setIsLoading(false);
+    //   return { message };
+    // }
   };
 
 
@@ -46,6 +51,7 @@ const Login = () => {
 
   return (
     <div className="login-content">
+      <Toaster />
       <div className="left-side">
         <div className="left-content">
           <h4>
@@ -66,15 +72,27 @@ const Login = () => {
               type="text"
               placeholder="Email"
               name="email"
+              value={values.email}
               onChange={(e) => onInputChange(e)}
             />
+            {errors && errors.email ? (
+            <div className="style-error">{errors.email}</div>
+            ) : (
+            <div className=""></div>
+            )}
             <input
               className="w-100 my-3"
               type="password"
               placeholder="Password"
               name="password"
+              value={values.password}
               onChange={(e) => onInputChange(e)}
             />
+            {errors && errors.password ? (
+            <div className="style-error">{errors.password}</div>
+            ) : (
+            <div className=""></div>
+            )}
             {loading ? (
               <button color="primary" disabled>
                 Loading...

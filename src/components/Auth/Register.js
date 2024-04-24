@@ -1,36 +1,40 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./login.css";
-import axios from "axios";
-import Dashboard from "../Dashboard";
+import {Toaster} from "react-hot-toast";
+import { useSelector, useDispatch, connect } from "react-redux";
+import { registerUser } from "../../redux/actions/authActions";
 import { RegisterValidation, validateRegister } from "../utility/FormValidation";
 
 const Register = () => {
   const { errors, values, onInputChange, handleSubmit, isSubmitted } =
   RegisterValidation(validateRegister);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const tokenString = JSON.parse(localStorage.getItem("accessToken"));
   const [isLoading, setIsLoading] = useState(false);
+  
 
   const onFormSubmit = async (obj) => {
-    try {
-      setIsLoading(true);
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}register`,
-        obj
-      );
-      const formData = await response.data;
-      setIsLoading(false);
-      navigate(`/login`);
-      if (formData) {
-        setIsLoading(false);
-      }
-      return { formData };
-    } catch (error) {
-      const message = error.response;
-      setIsLoading(false);
-      return { message };
-    }
+    dispatch(registerUser(obj, navigate));
+    // try {
+    //   setIsLoading(true);
+    //   const response = await axios.post(
+    //     `${process.env.REACT_APP_BASE_URL}register`,
+    //     obj
+    //   );
+    //   const formData = await response.data;
+    //   setIsLoading(false);
+    //   navigate(`/login`);
+    //   if (formData) {
+    //     setIsLoading(false);
+    //   }
+    //   return { formData };
+    // } catch (error) {
+    //   const message = error.response;
+    //   setIsLoading(false);
+    //   return { message };
+    // }
   };
 
   useEffect(() => {
@@ -39,14 +43,15 @@ const Register = () => {
     }
   }, [errors]);
 
-  useEffect(() => {
-    if (tokenString) {
-        navigate(`/`)
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (tokenString) {
+  //       navigate(`/`)
+  //   }
+  // }, []);
 
   return (
     <div className="login-content">
+      <Toaster />
       <div className="left-side">
         <div className="left-content">
           <h4>
@@ -65,22 +70,40 @@ const Register = () => {
               type="text"
               placeholder="Name"
               name="name"
+              value={values.name}
               onChange={(e) => onInputChange(e)}
             />
+            {errors && errors.name ? (
+            <div className="style-error">{errors.name}</div>
+            ) : (
+            <div className=""></div>
+            )}
             <input
               className="w-100 my-2"
               type="text"
               placeholder="Email"
               name="email"
+              value={values.email}
               onChange={(e) => onInputChange(e)}
             />
+            {errors && errors.email ? (
+            <div className="style-error">{errors.email}</div>
+            ) : (
+            <div className=""></div>
+            )}
             <input
               className="w-100 my-1 mb-3"
               type="password"
               placeholder="Password"
               name="password"
+              value={values.password}
               onChange={(e) => onInputChange(e)}
             />
+            {errors && errors.password ? (
+            <div className="style-error">{errors.password}</div>
+            ) : (
+            <div className=""></div>
+            )}
             {isLoading ? (
               <button color="primary" disabled>
                 Loading...

@@ -3,32 +3,38 @@ import FormValidation, { validate } from "../utility/FormValidation";
 import './styleModal.css'
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
+import { authHeader, headers } from "../../redux/headers";
 
-const EditModal = ({ closeModal, todoId, todo, getTodos }) => {
+const EditModal = ({ closeModal, contactId, contact, getContacts, currentPage }) => {
     const { errors, values, onInputChange, handleSubmit, isSubmitted, setValues } =
             FormValidation(validate);
     const [loading, setIsLoading] = useState(false);
-    const notify = () => toast("Weldone, you have successfully added a todo");
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    const notify = () => toast("Weldone, you have successfully added a contact");
 
     const onFormSubmit = async (formData) => {
         setIsLoading(true);
         try {
-            await axios.put(`https://todo-backend-1uso.onrender.com/api/todo/update/${todoId}`, formData);
+            await axios.put(`http://localhost:8000/api/user-contact/${contactId}`, formData, {
+                headers: authHeader(token),
+              });
             notify()
             closeModal();
-            getTodos()
+            getContacts(currentPage)
             setIsLoading(false);
         } catch (error) {
             closeModal();
-            getTodos()
+            getContacts(currentPage)
             console.error('Error:', error.message);
             setIsLoading(false);
         }
     };
 
     useEffect(() => {
-        if (todo) setValues(todo);
-    }, [todo]);
+        console.log(contact)
+        if (contact) setValues(contact);
+    }, [contact]);
 
     useEffect(() => {
         if (Object.keys(errors).length == 0 && isSubmitted) {
@@ -75,8 +81,8 @@ const EditModal = ({ closeModal, todoId, todo, getTodos }) => {
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={closeModal}>Close</button>
                             {
-                                loading ? <button class="btn btn-primary" type="button" disabled>
-                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                loading ? <button className="btn btn-primary" type="button" disabled>
+                                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                     Loading...
                                 </button> :
                                 <button type="submit" className="add-btn">Submit</button>
