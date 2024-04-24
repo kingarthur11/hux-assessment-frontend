@@ -9,7 +9,7 @@ const ProtectedRoute = ({ isAuth, children }) => {
 
 export default ProtectedRoute
 
-export const NotProtectedRoute = ({ isAuth, children }) => {
+export const NotProtectedRoute = ({ isAuth, children, isSignedup }) => {
   if (isAuth) {
     return <Navigate to="/" replace />
   }

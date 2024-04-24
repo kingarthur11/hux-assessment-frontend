@@ -12,7 +12,7 @@ export const registerUser = (dataObj, navigate) => async (dispatch) => {
     payload: true,
   });
   const { formData, message } = await register(dataObj);
-  console.log(formData);
+  // console.log(formData);
   // return true
   if (formData) {
     dispatch({
@@ -20,6 +20,7 @@ export const registerUser = (dataObj, navigate) => async (dispatch) => {
       payload: formData,
       success: true,
     });
+    toast.success("Registration was successful");
     navigate("/login");
   }
   if (message) {

@@ -12,7 +12,6 @@ const FormValidation = ( ) => {
   const [loading, setIsLoading] = useState(false);
   const [show, setShow] = useState(true);
 
-
   const onInputChange = (e) => {
     e.persist();
     let name = e.target.name;

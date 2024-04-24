@@ -7,7 +7,7 @@ import { registerUser } from "../../redux/actions/authActions";
 import { RegisterValidation, validateRegister } from "../utility/FormValidation";
 
 const Register = () => {
-  const { errors, values, onInputChange, handleSubmit, isSubmitted } =
+  const { errors, values, onInputChange, handleSubmit, isSubmitted, setValues } =
   RegisterValidation(validateRegister);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -15,9 +15,17 @@ const Register = () => {
   // const [isLoading, setIsLoading] = useState(false);
   const { isLoading } = useSelector((state) => state.auth);
   
+  const refresh = () => {
+    setValues({
+      name: "",
+      email: "",
+      password: "",
+    });
+  };
 
   const onFormSubmit = async (obj) => {
     dispatch(registerUser(obj, navigate));
+    refresh()
   };
 
   useEffect(() => {
