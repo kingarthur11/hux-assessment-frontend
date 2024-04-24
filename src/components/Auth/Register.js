@@ -12,29 +12,12 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const tokenString = JSON.parse(localStorage.getItem("accessToken"));
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  const { isLoading } = useSelector((state) => state.auth);
   
 
   const onFormSubmit = async (obj) => {
     dispatch(registerUser(obj, navigate));
-    // try {
-    //   setIsLoading(true);
-    //   const response = await axios.post(
-    //     `${process.env.REACT_APP_BASE_URL}register`,
-    //     obj
-    //   );
-    //   const formData = await response.data;
-    //   setIsLoading(false);
-    //   navigate(`/login`);
-    //   if (formData) {
-    //     setIsLoading(false);
-    //   }
-    //   return { formData };
-    // } catch (error) {
-    //   const message = error.response;
-    //   setIsLoading(false);
-    //   return { message };
-    // }
   };
 
   useEffect(() => {
@@ -43,11 +26,6 @@ const Register = () => {
     }
   }, [errors]);
 
-  // useEffect(() => {
-  //   if (tokenString) {
-  //       navigate(`/`)
-  //   }
-  // }, []);
 
   return (
     <div className="login-content">

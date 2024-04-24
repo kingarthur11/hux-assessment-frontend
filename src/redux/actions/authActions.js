@@ -41,13 +41,11 @@ export const loginUser = (dataObj, navigate) => async (dispatch) => {
   const { data, message } = await login_user(dataObj);
   if (data) {
     const { user, token } = data;
-    // console.log(user, token);
-    // return true
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", JSON.stringify(token));
     dispatch({ type: types.LOGIN_USER, payload: user, success: true });
     toast.success("Login was successful");
-    navigate("/");
+    // navigate("/");
   }
 
   if (message) {

@@ -9,32 +9,16 @@ import {Toaster} from "react-hot-toast";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.auth);
   const { errors, values, onInputChange, handleSubmit, isSubmitted } =
   LoginValidation(validateLogin);
   const [loading, setIsLoading] = useState(false);
-  const notify = () => toast("Weldone, you have successfully added a contact");
 
   const onFormSubmit = async (obj) => {
     dispatch(loginUser(obj, navigate));
-    // try {
-    //   setIsLoading(true);
-    //   console.log(obj);
-    //   const response = await axios.post( `${process.env.REACT_APP_BASE_URL}login`, obj );
-    //   const formData = await response.data;
-    //   const token = await formData.data;
-    //   localStorage.setItem("accessToken", JSON.stringify(token));
-    //   console.log(token);
-    //   setIsLoading(false);
-    //   notify()
-    //   // navigate(`/`);
-    //   return { formData };
-    // } catch (error) {
-    //   const message = error.response;
-    //   setIsLoading(false);
-    //   return { message };
-    // }
   };
 
+  // console.log(isLoading)
 
   useEffect(() => {
       if (Object.keys(errors).length == 0 && isSubmitted) {
@@ -93,7 +77,7 @@ const Login = () => {
             ) : (
             <div className=""></div>
             )}
-            {loading ? (
+            {isLoading ? (
               <button color="primary" disabled>
                 Loading...
               </button>

@@ -54,7 +54,7 @@ const mainContactList = () => {
                   });
                 const { data } = response.data
                 setTotal(data.last_page)
-                console.log(data.last_page)
+                setContactId(0)
                 setFormData(data.data)
                 setIsLoading(false)
             } catch (error) {
