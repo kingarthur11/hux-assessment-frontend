@@ -12,13 +12,11 @@ const Login = () => {
   const { isLoading } = useSelector((state) => state.auth);
   const { errors, values, onInputChange, handleSubmit, isSubmitted } =
   LoginValidation(validateLogin);
-  const [loading, setIsLoading] = useState(false);
 
   const onFormSubmit = async (obj) => {
     dispatch(loginUser(obj, navigate));
   };
 
-  // console.log(isLoading)
 
   useEffect(() => {
       if (Object.keys(errors).length == 0 && isSubmitted) {

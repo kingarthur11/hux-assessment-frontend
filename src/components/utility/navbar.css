@@ -26,17 +26,13 @@
     .style-navbar {
         padding: .5rem 1rem;
     }
-    
-    /* h3 {
-      font-size: 1rem;
-    }
-    .harmbuga {
-      font-size: 30px;
-    } */
   }
-  .nav_link {
+  a.nav-link {
     text-decoration: none;
     color: #ffffff !important;
+  }
+  a {
+    text-decoration: none;
   }
   h3,
   p {
